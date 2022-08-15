@@ -157,8 +157,8 @@ int main(int argc, char* argv[]) {
 		}
 	}
 	
-	packet.eth_.dmac_ = Mac(sniff->arp_.smac()); 
-   	packet.eth_.smac_ = Mac(my_mac);
+	packet.eth_.dmac_ = Mac(sniff->arp_.smac());  // 요청받은 sender의 맥주소
+   	packet.eth_.smac_ = Mac(my_mac); // 
    	packet.eth_.type_ = htons(EthHdr::Arp);
 
 	packet.arp_.hrd_ = htons(ArpHdr::ETHER);
@@ -168,7 +168,7 @@ int main(int argc, char* argv[]) {
 	packet.arp_.op_ = htons(ArpHdr::Reply);
 
 	packet.arp_.smac_ = Mac(my_mac);
-	packet.arp_.sip_ = htonl(Ip(target_ip));
+	packet.arp_.sip_ = htonl(Ip(target_ip)); // target의 IP주소의 mac주소가 내 mac 주소라고 sender에게 응답해줌 
 	packet.arp_.tmac_ = Mac(sniff->arp_.smac());
 	packet.arp_.tip_ = htonl(Ip(sender_ip));
 	
