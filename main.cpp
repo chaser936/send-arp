@@ -111,7 +111,6 @@ int main(int argc, char* argv[]) {
 
 
 	EthArpPacket packet;
-
 	packet.eth_.dmac_ = Mac::broadcastMac();  //목적지 mac주소를 모르기떄문에 FF:FF:FF:FF:FF:FF인 브로드캐스트 사용
 	packet.eth_.smac_ = Mac(my_mac);
 	packet.eth_.type_ = htons(EthHdr::Arp);
