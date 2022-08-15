@@ -160,8 +160,8 @@ int main(int argc, char* argv[]) {
 	}
 	
 	packet.eth_.dmac_ = Mac(sniff->arp_.smac()); 
-    packet.eth_.smac_ = Mac(my_mac);
-    packet.eth_.type_ = htons(EthHdr::Arp);
+   	packet.eth_.smac_ = Mac(my_mac);
+   	packet.eth_.type_ = htons(EthHdr::Arp);
 
 	packet.arp_.hrd_ = htons(ArpHdr::ETHER);
 	packet.arp_.pro_ = htons(EthHdr::Ip4);
