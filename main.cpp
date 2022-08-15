@@ -7,7 +7,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <pcap.h>
-#include <iostream>
 #include "ethhdr.h"
 #include "arphdr.h"
 
@@ -152,8 +151,7 @@ int main(int argc, char* argv[]) {
 		if((sniff->eth_.type() == sniff->eth_.Arp) && (sniff->arp_.op() == sniff->arp_.Reply)){ // 이더넷 Type이 arp이고, arp의 opcode값이 reply값이면 요청한 응답을 받을 수 있음.
 			if((sniff->arp_.sip() == Ip(sender_ip)) && (sniff->arp_.tmac() == Mac(my_mac)) && (sniff->arp_.tip() == Ip(my_ip))){ 
 				printf("find sender mac\n");
-				std::cout << "sender mac : " << std::string(sniff->arp_.smac()) << std::endl;;
-				
+				printf("sender mac : %s\n",std::string(sniff->arp_.smac()).c_str());
 				break;
 			}
 		}
